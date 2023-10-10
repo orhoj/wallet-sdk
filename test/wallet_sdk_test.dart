@@ -12,5 +12,10 @@ void main() {
     test('First Test', () {
       expect(awesome.isAwesome, isTrue);
     });
+
+    test("Get key using FFI", () {
+      final result = getKeyUsingFfi();
+      print(result);
+    });
   });
 }

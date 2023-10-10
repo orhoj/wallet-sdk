@@ -1,0 +1,25 @@
+[package]
+name = "rusty_ffi"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0"
+hex = "0.4"
+
+[dependencies.key_derivation]
+path = "concordium-base/rust-src/key_derivation"
+
+[dependencies.ed25519_hd_key_derivation]
+path = "concordium-base/rust-src/ed25519_hd_key_derivation"
+
+[lib]
+name = "wallet_sdk_rust"
+crate-type = ["cdylib"]
+
+[profile.release]
+# strip = true  # Automatically strip symbols from the binary. Has a large impact on size, but debugging in case of errors will be more difficult.
+# opt-level = "z"  # Optimize for size. Doesn't seem to gain us much.
+lto = true # Has a large impact on size -> 4.4mb to 1.8mb.
